@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Custom Map</title>
+	<link rel="stylesheet" type="text/css" href="map.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY_HERE&components=country:pk&libraries=places&callback=initMap"
+	async defer></script>
+	<script src="map.js"></script>
+</head>
+<body>
+	<div id="map"></div>
+	<div class="map-card" id="map-card">
+		<div id="map-container">
+			<input id="map-input" type="text"	placeholder="Enter a location">
+		</div>
+		<button id="location-getter"><i class="fas fa-map-marker-alt"></i></button>
+		<button id="done"><i class="fas fa-thumbs-up"></i></button>
+	</div>
+	<div id="infowindow-content">
+		<img src="" width="16" height="16" id="place-icon">
+		<span id="place-name"  class="title"></span><br>
+		<span id="place-address"></span>
+	</div>
+</body>
+</html>
