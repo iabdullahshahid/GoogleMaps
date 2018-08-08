@@ -47,14 +47,32 @@ function initMap() {
 	// ==========Event for get current location==========
 	// ==========Event for location done==========
 	doneButton.addEventListener('click', function() {
-		 var done = {lat: marker.position.lat(), lng: marker.position.lng()}; 
-		 console.log(done);
+		var newPos = {lat: marker.position.lat(), lng: marker.position.lng()};
+		geocoder = new google.maps.Geocoder();
+		geocoder.geocode({latLng: newPos}, 
+			function(results, status) 
+			{
+				if (status == google.maps.GeocoderStatus.OK) 
+				{
+					var data = {latLng: newPos, address: results[0].formatted_address}; 
+					console.log(data);
+					map.setCenter(newPos);
+					marker.setPosition(newPos);
+					infowindow.setContent(results[0].formatted_address);
+					infowindow.open(map, marker);		
+					input.value = '';
+					input.value = results[0].formatted_address;
+				} 
+				else 
+				{
+					console.log('error occured');
+				}
+			}
+			);
 	});
 	// ==========Event for location done==========
 	// =======Event for autocomplete place change=======
 	autocomplete.addListener('place_changed', function(event) {
-		// infowindow.close();
-		// marker.setVisible(false);
 		var place = autocomplete.getPlace();
 		geocodeLatLng(geocoder, map, marker, infowindow, input, place.geometry.location.lat(), place.geometry.location.lng());
 	});
